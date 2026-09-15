@@ -8,7 +8,10 @@ app = Flask(__name__)
 
 # Cargar y preparar el modelo de EcoEnergy en memoria
 try:
-    df = pd.read_csv("datos_500_registros.csv")
+    import os
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(base_dir, "datos_500_registros.csv")
+    df = pd.read_csv(csv_path)
     
     # Entrenar modelo ML con las 4 variables de EcoEnergy
     X = df[['Temperatura', 'Personas', 'Horas_AC', 'Horas_TV']]
